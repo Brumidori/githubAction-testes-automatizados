@@ -1,4 +1,4 @@
-module github.com/guilhermeonrails/api-go-gin
+module github.com/Brumidori/githubAction-testes-automatizados
 
 go 1.15
 

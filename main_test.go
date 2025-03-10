@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/guilhermeonrails/api-go-gin/controllers"
-	"github.com/guilhermeonrails/api-go-gin/database"
-	"github.com/guilhermeonrails/api-go-gin/models"
+	"github.com/Brumidori/githubAction-testes-automatizados/controllers"
+	"github.com/Brumidori/githubAction-testes-automatizados/database"
+	"github.com/Brumidori/githubAction-testes-automatizados/models"
 	"github.com/stretchr/testify/assert"
 )
 
