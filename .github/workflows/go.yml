@@ -1,0 +1,31 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: CI #nome do workflow
+
+on: #indica quando o conjunto de passos vai ser executado
+  push: #ao fazer merge (caso nao abra pr direto na main)
+    branches: [ "main" ]
+  pull_request: #ao abrir pr
+    branches: [ "main" ]
+
+jobs: #conjunto de passos
+
+  ci:
+    runs-on: ubuntu-latest #qual tipo de servidor sera executado
+    steps:
+    - uses: actions/checkout@v4 #action do proprio github -> faz git clone e entra no projeto
+
+    - name: Set up Go
+      uses: actions/setup-go@v4 #action github -> instala Go
+      with:
+        go-version: '1.22'
+
+    - name: Inicia banco
+      run: docker compose up -d postgres #comando settado manualmente
+
+    - name: Lint
+      run: docker run --rm -itv $(CURDIR):/app -w /app golangci/golangci-lint golangci-lint run controllers/ database/ models/ routes/
+        
+    - name: Test
+      run: go test -v main_test.go
